@@ -1,7 +1,13 @@
+import os
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+import os
+import json
 
 YOUTUBE_TRENDING_URL = 'https://www.youtube.com/feed/trending'
 
@@ -35,7 +41,6 @@ def parse_video(video):
     'channel': channel_name,
     'description':description
   }
-  
 if __name__ == "__main__":
   print("Creating driver")
   driver = get_driver()
@@ -47,10 +52,8 @@ if __name__ == "__main__":
   print(video_data)
 
   print('save data to csv')
-
   videos_df = pd.DataFrame(video_data)
   print(videos_df)
   videos_df.to_csv('trending.csv',index = None)
-
 
 
